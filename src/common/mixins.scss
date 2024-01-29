@@ -1,0 +1,45 @@
+@mixin montserrat-text($size) {
+  font-family: 'Montserrat', sans-serif;
+  font-size: $size;
+  font-weight: 700;
+}
+
+@mixin pt-sans-caption-text($size) {
+  font-family: 'PT Sans Caption', sans-serif;
+  font-size: $size;
+}
+
+@mixin icon-dot($color){
+  position: absolute;
+  content: '';
+  width: 3px;
+  height: 3px;
+  top: 3.5px;
+  left: -23.5px;
+  border-radius: 50%;
+  background: $color;
+}
+
+@mixin icon-stick($color){
+  position: absolute;
+  content: '';
+  width: 3px;
+  height: 7px;
+  top: 8.5px;
+  left: -23.5px;
+  border-radius: 1px;
+  background: $color;
+}
+
+@mixin icon-circle($color){
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  top: -4px;
+  left: -35px;
+  border-radius: 50%;
+  border: 3px solid $color;
+  background: transparent;
+  color: $color;
+}
