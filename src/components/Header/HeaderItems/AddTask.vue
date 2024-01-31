@@ -2,7 +2,7 @@
   <div class="changing-tasks__add">
     <h3 class="changing-tasks__add-title">Добавить задачу</h3>
     <form class="changing-tasks__add-form">
-      <button class="changing-tasks__add-form-button" />
+      <button class="changing-tasks__add-form-button">Добавить задачу</button>
       <input placeholder="Текст" class="changing-tasks__add-form-input" />
     </form>
   </div>
@@ -33,6 +33,7 @@
 
     &-button {
       width: 44px;
+      font-size: 0;
       height: 44px;
       background: $color-orange;
       border-radius: 50%;
@@ -76,5 +77,63 @@
   }
 }
 
+@media screen and (max-width: 1190px) {
+  .changing-tasks__add {
+    max-width: none;
+
+    .changing-tasks__add-form{
+      &-button {
+        width: 48px;
+
+      }
+      &-input {
+        @include pt-sans-caption-text(14px);
+        max-width: none;
+        margin: 0 0 0 40px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .changing-tasks__add {
+    .changing-tasks__add-title {
+      @include pt-sans-caption-text(18px);
+      line-height: 26px;
+      margin: 0 0 24px;
+    }
+  }
+}
+
+
+@media screen and (max-width: $phone) {
+  .changing-tasks__add {
+    padding: 24px;
+
+    .changing-tasks__add-form{
+      flex-direction: column-reverse;
+      justify-content: center;
+
+      &-button {
+        @include pt-sans-caption-text(14px);
+        font-weight: 700;
+        line-height: 24px;
+        padding: 8px 24px;
+        color: $color-white;
+        width: 100%;
+        height: auto;
+        background: $color-orange;
+        border-radius: 50px;
+        position: static;
+        border-color: transparent;
+      }
+      &-input {
+        @include pt-sans-caption-text(14px);
+        max-width: none;
+        margin: 0 0 24px;
+      }
+    }
+  }
+}
 
 </style>

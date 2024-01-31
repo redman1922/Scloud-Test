@@ -82,4 +82,21 @@
     }
   }
 }
+
+
+@media screen and (max-width: 1190px) {
+  .view-tasks__desk {
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &-cards {
+      text-align: center;
+    }
+
+    &-cards:last-child{
+      margin: 50px 0 0;
+    }
+  }
+}
+
 </style>

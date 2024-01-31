@@ -112,4 +112,42 @@
   }
 }
 
+@media screen and (max-width: 1190px) {
+  .changing-tasks__current {
+    max-width: none;
+    margin: 0 0 60px;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .changing-tasks__current {
+    .changing-tasks__current-title {
+      @include pt-sans-caption-text(18px);
+      line-height: 26px;
+      margin: 0 0 24px;
+    }
+  }
+}
+
+@media screen and (max-width: $phone) {
+  .changing-tasks__current {
+    padding: 24px;
+
+    .changing-tasks__current-ul {
+      flex-direction: column;
+      align-items: center;
+
+      .changing-tasks__current-li {
+        @include pt-sans-caption-text(14px);
+        width: 100%;
+        text-align: center;
+        margin: 0 0 16px;
+      }
+
+      .changing-tasks__current-li:last-child{
+        margin: 0;
+      }
+    }
+  }
+}
 </style>

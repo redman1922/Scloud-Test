@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CurrentTask from '@/components/Header/HeaderItems/CurrentTask.vue'
-import AddTask from '@/components/Header/HeaderItems/CurrentTask.vue'
+import AddTask from '@/components/Header/HeaderItems/AddTask.vue'
 import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
 </script>
 
@@ -12,7 +12,7 @@ import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
       <AddTask />
     </div>
     <div class="changing-tasks-list__position">
-      <HeaderListTask/>
+      <HeaderListTask />
     </div>
   </div>
 </template>
@@ -46,6 +46,42 @@ import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
     max-width: 1200px;
     width: 100%;
     border-radius: 48px;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .changing-tasks__position {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .changing-tasks {
+    .changing-tasks__title {
+      @include montserrat-text(24px);
+      line-height: 32px;
+      margin: 0 0 40px 0;
+    }
+
+    .changing-tasks-list__position {
+      border-radius: 32px;
+    }
+  }
+}
+
+@media screen and (max-width: $phone) {
+  .changing-tasks {
+    .changing-tasks__title {
+      @include montserrat-text(20px);
+      line-height: 28px;
+      margin: 0 0 32px 0;
+    }
+
+    .changing-tasks-list__position{
+      background: transparent;
+      padding: 0;
+    }
   }
 }
 </style>
