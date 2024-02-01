@@ -1,24 +1,28 @@
+<script setup>
+import { inject } from 'vue'
+
+const {statusCountsAndCards} = inject('cards');
+</script>
+
 <template>
   <h2 class="wrapper-view-tasks__title">Доска задач</h2>
   <div class="view-tasks__desk">
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">Открыто</span>
-      <ul class="view-tasks__desk-cards__list">
-        <li>Сварить пельмени</li>
-        <li>Поднять инфрастуктуру проекта</li>
+      <ul  class="view-tasks__desk-cards__list">
+        <li v-for="message in statusCountsAndCards.cards['Открыт']" :key="message.text">{{message.text}}</li>
       </ul>
     </div>
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">В работе</span>
       <ul class="view-tasks__desk-cards__list">
-        <li>Проснуться, улыбнуться, сделать отжимания, слетать на Марс и прочитать книгу</li>
-        <li>Поругаться с девопсом</li>
+        <li v-for="message in statusCountsAndCards.cards['В работе']" :key="message.text">{{message.text}}</li>
       </ul>
     </div>
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">Закрыто</span>
       <ul class="view-tasks__desk-cards__list">
-        <li>Спеть - Знаешь ли ты, вдоль ночных дорог</li>
+        <li v-for="message in statusCountsAndCards.cards['Закрыт']" :key="message.text">{{message.text}}</li>
       </ul>
     </div>
   </div>
@@ -44,6 +48,7 @@
     max-width: 389px;
     width: 100%;
 
+
     &-status {
       @include pt-sans-caption-text(20px);
       font-weight: 700;
@@ -62,8 +67,9 @@
     background: $color-background-cards;
     padding: 16px;
     border-radius: 24px;
-    min-height: 280px;
     margin: 24px 0 0;
+    min-height: 280px;
+    word-break: break-word;
 
     li{
       @include pt-sans-caption-text(16px);

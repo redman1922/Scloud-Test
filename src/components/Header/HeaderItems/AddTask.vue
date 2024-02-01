@@ -1,9 +1,26 @@
+<script setup>
+import { inject, ref } from 'vue'
+
+const { addToCards } = inject('cards')
+
+const text = ref('')
+
+const handleSubmit = () => {
+  addToCards({
+    text: text.value,
+    status: 'Открыт'
+  })
+  text.value = ''
+}
+
+</script>
+
 <template>
   <div class="changing-tasks__add">
     <h3 class="changing-tasks__add-title">Добавить задачу</h3>
-    <form class="changing-tasks__add-form">
-      <button class="changing-tasks__add-form-button">Добавить задачу</button>
-      <input placeholder="Текст" class="changing-tasks__add-form-input" />
+    <form @submit.prevent="handleSubmit" class="changing-tasks__add-form">
+      <button type="submit" class="changing-tasks__add-form-button">Добавить задачу</button>
+      <input v-model="text" placeholder="Текст" class="changing-tasks__add-form-input" />
     </form>
   </div>
 </template>
@@ -81,11 +98,12 @@
   .changing-tasks__add {
     max-width: none;
 
-    .changing-tasks__add-form{
+    .changing-tasks__add-form {
       &-button {
         width: 48px;
 
       }
+
       &-input {
         @include pt-sans-caption-text(14px);
         max-width: none;
@@ -110,7 +128,7 @@
   .changing-tasks__add {
     padding: 24px;
 
-    .changing-tasks__add-form{
+    .changing-tasks__add-form {
       flex-direction: column-reverse;
       justify-content: center;
 
@@ -127,6 +145,7 @@
         position: static;
         border-color: transparent;
       }
+
       &-input {
         @include pt-sans-caption-text(14px);
         max-width: none;

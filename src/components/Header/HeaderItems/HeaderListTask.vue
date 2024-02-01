@@ -1,39 +1,27 @@
+<script setup>
+import { inject } from 'vue'
+
+const { cards } = inject('cards')
+
+defineProps({
+  toggleButton: Boolean
+})
+</script>
+
 <template>
   <div class="changing-tasks-list__headers">
     <h4 class="changing-tasks-list__headers-title">Задачи</h4>
     <h4 class="changing-tasks-list__headers-title">Статус</h4>
   </div>
   <ul class="changing-tasks-list__ul">
-    <li class="changing-tasks-list__ul-li">
-      <p class="changing-tasks-list__ul-li-text">Сварить пельмени</p>
+    <li
+      v-for="(card, index) in (toggleButton ? cards : cards.slice(0, 5))"
+      :key="index"
+      class="changing-tasks-list__ul-li"
+    >
+      <p class="changing-tasks-list__ul-li-text">{{ card.text }}</p>
       <div>
-        <span class="changing-tasks-list__ul-li-status">Открыт</span>
-      </div>
-    </li>
-    <li class="changing-tasks-list__ul-li">
-      <p class="changing-tasks-list__ul-li-text">Поднять инфрастуктуру проекта</p>
-      <div>
-        <span class="changing-tasks-list__ul-li-status">Открыт</span>
-      </div>
-    </li>
-    <li class="changing-tasks-list__ul-li">
-      <p class="changing-tasks-list__ul-li-text">
-        Проснуться, улыбнуться, сделать отжимания, слетать на Марс и прочитать книгу
-      </p>
-      <div>
-        <span class="changing-tasks-list__ul-li-status">В работе</span>
-      </div>
-    </li>
-    <li class="changing-tasks-list__ul-li">
-      <p class="changing-tasks-list__ul-li-text">Поругаться с девопсом</p>
-      <div>
-        <span class="changing-tasks-list__ul-li-status">В работе</span>
-      </div>
-    </li>
-    <li class="changing-tasks-list__ul-li">
-      <p class="changing-tasks-list__ul-li-text">Спеть - Знаешь ли ты, вдоль ночных дорог</p>
-      <div>
-        <span class="changing-tasks-list__ul-li-status">Закрыт</span>
+        <span class="changing-tasks-list__ul-li-status">{{ card.status }}</span>
       </div>
     </li>
   </ul>

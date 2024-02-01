@@ -1,7 +1,17 @@
-<script setup lang="ts">
+<script setup>
 import CurrentTask from '@/components/Header/HeaderItems/CurrentTask.vue'
 import AddTask from '@/components/Header/HeaderItems/AddTask.vue'
 import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
+import { inject, ref } from 'vue'
+
+const { cards } = inject('cards')
+const toggleButton = ref(false);
+
+const scrollToTop = () => {
+    const block = document.querySelector('.changing-tasks-list__position');
+    block.scrollIntoView({ behavior: 'smooth' });
+  }
+
 </script>
 
 <template>
@@ -12,8 +22,11 @@ import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
       <AddTask />
     </div>
     <div class="changing-tasks-list__position">
-      <HeaderListTask />
+      <HeaderListTask :toggleButton="toggleButton"/>
     </div>
+    <button v-if="cards.length > 5"  class="changing-tasks-list__position-button" @click="toggleButton = !toggleButton; scrollToTop()">
+      {{ toggleButton ? 'Скрыть' : 'Показать ещё' }}
+    </button>
   </div>
 </template>
 
@@ -47,6 +60,22 @@ import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
     width: 100%;
     border-radius: 48px;
   }
+
+  .changing-tasks-list__position-button {
+    @include pt-sans-caption-text(14px);
+    font-weight: 700;
+    line-height: 24px;
+    color: $color-orange;
+    border: 2px solid $color-orange;
+    border-radius: 50px;
+    padding: 12px 32px;
+    background-color: $color-white;
+    margin: 40px 0 0;
+  }
+
+  .changing-tasks-list__position-button:active{
+    opacity: 0.5;
+  }
 }
 
 @media screen and (max-width: 1190px) {
@@ -78,7 +107,7 @@ import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
       margin: 0 0 32px 0;
     }
 
-    .changing-tasks-list__position{
+    .changing-tasks-list__position {
       background: transparent;
       padding: 0;
     }

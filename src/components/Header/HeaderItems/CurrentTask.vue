@@ -1,15 +1,21 @@
+<script setup>
+import { inject } from 'vue'
+
+const {statusCountsAndCards} = inject('cards');
+</script>
+
 <template>
   <div class="changing-tasks__current">
     <h3 class="changing-tasks__current-title">Текущие задачи</h3>
     <ul class="changing-tasks__current-ul">
       <li class="changing-tasks__current-li">
-        <span class="changing-tasks__current-li-icon-1"><strong>Открыто - 2</strong></span>
+        <span class="changing-tasks__current-li-icon-1"><strong>Открыто - {{statusCountsAndCards.counts['Открыт']}}</strong></span>
       </li>
       <li class="changing-tasks__current-li">
-        <span class="changing-tasks__current-li-icon-2"><strong>В работе - 2</strong></span>
+        <span class="changing-tasks__current-li-icon-2"><strong>В работе - {{statusCountsAndCards.counts['В работе']}}</strong></span>
       </li>
       <li class="changing-tasks__current-li">
-        <span class="changing-tasks__current-li-icon-3"> <strong>Закрыто - 1</strong></span>
+        <span class="changing-tasks__current-li-icon-3"> <strong>Закрыто - {{statusCountsAndCards.counts['Закрыт']}}</strong></span>
       </li>
     </ul>
   </div>

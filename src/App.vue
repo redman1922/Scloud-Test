@@ -1,6 +1,76 @@
-<script setup lang="ts">
+<script setup>
 import Header from '@/components/Header/Header.vue'
 import TaskBoard from '@/components/TaskBoard/TaskBoard.vue'
+import { computed, onMounted, provide, ref, watch } from 'vue'
+
+const cardList = [
+  {
+    text: 'Сварить пельмени',
+    status: 'Открыт'
+  },
+  {
+    text: 'Поднять инфрастуктуру проекта',
+    status: 'Открыт'
+  },
+  {
+    text: 'Проснуться, улыбнуться, сделать отжимания, слетать на Марс и прочитать книгу',
+    status: 'В работе'
+  },
+  {
+    text: 'Поругаться с девопсом',
+    status: 'В работе'
+  },
+  {
+    text: 'Спеть - Знаешь ли ты, вдоль ночных дорог',
+    status: 'Закрыт'
+  }
+]
+
+const cards = ref([])
+
+const statusCountsAndCards = computed(() => cards.value.reduce((accumulator, card) => {
+    accumulator.counts[card.status] = (accumulator.counts[card.status] || 0) + 1
+
+    accumulator.cards[card.status].push(card)
+
+    return accumulator
+  }, {
+    counts: {},
+    cards: {
+      'Открыт': [],
+      'В работе': [],
+      'Закрыт': []
+    }
+  })
+)
+
+onMounted(() => {
+  const currentCards = localStorage.getItem('cards')
+  if (currentCards) {
+    cards.value = JSON.parse(currentCards)
+  } else {
+    cards.value = [...cardList]
+    localStorage.setItem('cards', JSON.stringify(cardList))
+  }
+})
+
+const addToCards = (item) => {
+  cards.value.push(item)
+}
+
+watch(
+  cards,
+  () => {
+    localStorage.setItem('cards', JSON.stringify(cards.value))
+  },
+  { deep: true }
+)
+provide('cards', {
+  cards,
+  addToCards,
+  statusCountsAndCards
+})
+
 </script>
 
 <template>
