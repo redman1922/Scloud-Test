@@ -3,24 +3,31 @@ import Header from '@/components/Header/Header.vue'
 import TaskBoard from '@/components/TaskBoard/TaskBoard.vue'
 import { computed, onMounted, provide, ref, watch } from 'vue'
 
+let id = ref(0)
+
 const cardList = [
   {
+    id: id.value++,
     text: 'Сварить пельмени',
     status: 'Открыт'
   },
   {
+    id: id.value++,
     text: 'Поднять инфрастуктуру проекта',
     status: 'Открыт'
   },
   {
+    id: id.value++,
     text: 'Проснуться, улыбнуться, сделать отжимания, слетать на Марс и прочитать книгу',
     status: 'В работе'
   },
   {
+    id: id.value++,
     text: 'Поругаться с девопсом',
     status: 'В работе'
   },
   {
+    id: id.value++,
     text: 'Спеть - Знаешь ли ты, вдоль ночных дорог',
     status: 'Закрыт'
   }
@@ -58,6 +65,25 @@ const addToCards = (item) => {
   cards.value.push(item)
 }
 
+const updateCards = ({ id, text, status }) => {
+  const index = cards.value.findIndex(card => card.id === id)
+  if (index !== -1) {
+      cards.value[index].text = text
+      cards.value[index].status = status
+  } else {
+    console.error('Карточка с указанным ID не найдена')
+  }
+}
+
+const removeCards = (id) => {
+  const index = cards.value.findIndex(card => card.id === id)
+  if (index !== -1) {
+    cards.value.splice(index, 1)
+  } else {
+    console.error('Карточка с указанным ID не найдена')
+  }
+}
+
 watch(
   cards,
   () => {
@@ -68,7 +94,10 @@ watch(
 provide('cards', {
   cards,
   addToCards,
-  statusCountsAndCards
+  statusCountsAndCards,
+  id,
+  updateCards,
+  removeCards
 })
 
 </script>

@@ -10,19 +10,19 @@ const {statusCountsAndCards} = inject('cards');
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">Открыто</span>
       <ul  class="view-tasks__desk-cards__list">
-        <li v-for="message in statusCountsAndCards.cards['Открыт']" :key="message.text">{{message.text}}</li>
+        <li v-for="message in statusCountsAndCards.cards['Открыт']" :key="message.id">{{message.text}}</li>
       </ul>
     </div>
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">В работе</span>
       <ul class="view-tasks__desk-cards__list">
-        <li v-for="message in statusCountsAndCards.cards['В работе']" :key="message.text">{{message.text}}</li>
+        <li v-for="message in statusCountsAndCards.cards['В работе']" :key="message.id">{{message.text}}</li>
       </ul>
     </div>
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">Закрыто</span>
       <ul class="view-tasks__desk-cards__list">
-        <li v-for="message in statusCountsAndCards.cards['Закрыт']" :key="message.text">{{message.text}}</li>
+        <li v-for="message in statusCountsAndCards.cards['Закрыт']" :key="message.id">{{message.text}}</li>
       </ul>
     </div>
   </div>

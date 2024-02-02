@@ -5,12 +5,12 @@ import HeaderListTask from '@/components/Header/HeaderItems/HeaderListTask.vue'
 import { inject, ref } from 'vue'
 
 const { cards } = inject('cards')
-const toggleButton = ref(false);
+const toggleButton = ref(false)
 
 const scrollToTop = () => {
-    const block = document.querySelector('.changing-tasks-list__position');
-    block.scrollIntoView({ behavior: 'smooth' });
-  }
+  const block = document.querySelector('.changing-tasks-list__position')
+  block.scrollIntoView({ behavior: 'smooth' })
+}
 
 </script>
 
@@ -22,9 +22,12 @@ const scrollToTop = () => {
       <AddTask />
     </div>
     <div class="changing-tasks-list__position">
-      <HeaderListTask :toggleButton="toggleButton"/>
+      <HeaderListTask
+        :toggleButton="toggleButton"
+      />
     </div>
-    <button v-if="cards.length > 5"  class="changing-tasks-list__position-button" @click="toggleButton = !toggleButton; scrollToTop()">
+    <button v-if="cards.length > 5" class="changing-tasks-list__position-button"
+            @click="toggleButton = !toggleButton; scrollToTop()">
       {{ toggleButton ? 'Скрыть' : 'Показать ещё' }}
     </button>
   </div>
@@ -73,7 +76,7 @@ const scrollToTop = () => {
     margin: 40px 0 0;
   }
 
-  .changing-tasks-list__position-button:active{
+  .changing-tasks-list__position-button:active {
     opacity: 0.5;
   }
 }

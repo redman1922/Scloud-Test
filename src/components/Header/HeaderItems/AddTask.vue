@@ -1,14 +1,15 @@
 <script setup>
 import { inject, ref } from 'vue'
 
-const { addToCards } = inject('cards')
+const { addToCards,id } = inject('cards')
 
 const text = ref('')
 
 const handleSubmit = () => {
   addToCards({
+    id: id.value++,
     text: text.value,
-    status: 'Открыт'
+    status: 'Открыт',
   })
   text.value = ''
 }
