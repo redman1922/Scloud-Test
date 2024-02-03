@@ -1,7 +1,25 @@
 <script setup>
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 
-const {statusCountsAndCards} = inject('cards');
+const { statusCountsAndCards, changeCardStatus } = inject('cards')
+
+const currentStatus = ref(null)
+const currentId = ref(null)
+
+const dragStart = (id) => {
+  currentId.value = id
+}
+
+const dragEnter = (status) => {
+  currentStatus.value = status
+}
+
+const dragEnd = () => {
+  changeCardStatus(currentId.value, currentStatus.value)
+  currentId.value = null
+  currentStatus.value = null
+}
+
 </script>
 
 <template>
@@ -9,20 +27,54 @@ const {statusCountsAndCards} = inject('cards');
   <div class="view-tasks__desk">
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">Открыто</span>
-      <ul  class="view-tasks__desk-cards__list">
-        <li v-for="message in statusCountsAndCards.cards['Открыт']" :key="message.id">{{message.text}}</li>
+      <ul
+        class="view-tasks__desk-cards__list"
+        @dragenter="dragEnter('Открыт')"
+      >
+        <li
+          v-for="message in statusCountsAndCards.cards['Открыт']"
+          :key="message.id"
+          :draggable="true"
+          @dragstart="dragStart(message.id)"
+          @dragover.prevent
+          @dragend="dragEnd"
+        >
+          {{ message.text }}
+        </li>
       </ul>
     </div>
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">В работе</span>
-      <ul class="view-tasks__desk-cards__list">
-        <li v-for="message in statusCountsAndCards.cards['В работе']" :key="message.id">{{message.text}}</li>
+      <ul
+        class="view-tasks__desk-cards__list"
+        @dragenter="dragEnter('В работе')"
+      >
+        <li
+          v-for="message in statusCountsAndCards.cards['В работе']"
+          :key="message.id"
+          :draggable="true"
+          @dragstart="dragStart(message.id)"
+          @dragover.prevent
+          @dragend="dragEnd"
+        >{{ message.text }}
+        </li>
       </ul>
     </div>
     <div class="view-tasks__desk-cards">
       <span class="view-tasks__desk-cards-status">Закрыто</span>
-      <ul class="view-tasks__desk-cards__list">
-        <li v-for="message in statusCountsAndCards.cards['Закрыт']" :key="message.id">{{message.text}}</li>
+      <ul
+        class="view-tasks__desk-cards__list"
+        @dragenter="dragEnter('Закрыт')"
+      >
+        <li
+          v-for="message in statusCountsAndCards.cards['Закрыт']"
+          :key="message.id"
+          :draggable="true"
+          @dragstart="dragStart(message.id)"
+          @dragover.prevent
+          @dragend="dragEnd"
+        >{{ message.text }}
+        </li>
       </ul>
     </div>
   </div>
@@ -71,7 +123,7 @@ const {statusCountsAndCards} = inject('cards');
     min-height: 280px;
     word-break: break-word;
 
-    li{
+    li {
       @include pt-sans-caption-text(16px);
       font-weight: 700;
       line-height: 24px;
@@ -83,7 +135,7 @@ const {statusCountsAndCards} = inject('cards');
       border: 2px solid $color-border;
     }
 
-    li:last-child{
+    li:last-child {
       margin: 0;
     }
   }
@@ -99,7 +151,7 @@ const {statusCountsAndCards} = inject('cards');
       text-align: center;
     }
 
-    &-cards:last-child{
+    &-cards:last-child {
       margin: 50px 0 0;
     }
   }

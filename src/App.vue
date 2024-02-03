@@ -84,6 +84,15 @@ const removeCards = (id) => {
   }
 }
 
+const changeCardStatus = (id, status) => {
+  const index = cards.value.findIndex(card => card.id === id)
+  if (index !== -1) {
+    cards.value[index].status = status
+  } else {
+    console.error('Карточка с указанным ID не найдена')
+  }
+}
+
 watch(
   cards,
   () => {
@@ -97,7 +106,8 @@ provide('cards', {
   statusCountsAndCards,
   id,
   updateCards,
-  removeCards
+  removeCards,
+  changeCardStatus
 })
 
 </script>
