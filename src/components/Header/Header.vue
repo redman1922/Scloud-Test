@@ -26,9 +26,12 @@ const scrollToTop = () => {
         :toggleButton="toggleButton"
       />
     </div>
-    <button v-if="cards.length > 5" class="changing-tasks-list__position-button"
-            @click="toggleButton = !toggleButton; scrollToTop()">
+    <button
+      v-if="cards.length > 5"
+      class="changing-tasks-list__position-button"
+      @click="toggleButton = !toggleButton; scrollToTop()">
       {{ toggleButton ? 'Скрыть' : 'Показать ещё' }}
+      <span :class="toggleButton ? 'arrow-up' : 'arrow-down'"></span>
     </button>
   </div>
 </template>
@@ -71,14 +74,83 @@ const scrollToTop = () => {
     color: $color-orange;
     border: 2px solid $color-orange;
     border-radius: 50px;
-    padding: 12px 32px;
+    padding: 12px 64px 12px 32px;
     background-color: $color-white;
     margin: 40px 0 0;
+    position: relative;
   }
 
   .changing-tasks-list__position-button:active {
     opacity: 0.5;
   }
+
+  .arrow-up {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #ff6600;
+    border-radius: 1px;
+    top: 19px;
+    right: 35px;
+    transform: rotate(135deg);
+  }
+  .arrow-up:after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #ff6600;
+    border-radius: 1px;
+    top: 4px;
+    right: -4px;
+    transform: rotate(90deg);
+  }
+
+  .arrow-down{
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #ff6600;
+    border-radius: 1px;
+    top: 19px;
+    right: 41px;
+    transform: rotate(135deg);
+  }
+  .arrow-down:after{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #ff6600;
+    border-radius: 1px;
+    top: -4px;
+    left: -5px;
+    transform: rotate(90deg);
+  }
+
+  //.changing-tasks-list__position-button:after{
+  //  content: "";
+  //  position: absolute;
+  //  width: 2px;
+  //  height: 10px;
+  //  background-color: #ff6600;
+  //  border-radius: 1px;
+  //  top: 19px;
+  //  right: 35px;
+  //  transform: rotate(45deg);
+  //}
+
+  //.changing-tasks-list__position-button:before{
+  //  content: "";
+  //  position: absolute;
+  //  width: 2px;
+  //  height: 10px;
+  //  background-color: #ff6600;
+  //  border-radius: 1px;
+  //  top: 19px;
+  //  right: 41px;
+  //  transform: rotate(135deg);
+  //}
 }
 
 @media screen and (max-width: 1190px) {

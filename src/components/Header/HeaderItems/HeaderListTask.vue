@@ -30,7 +30,6 @@
         :key="card.id"
         class="changing-tasks-list__ul-li"
       >
-
         <p class="changing-tasks-list__ul-li-text">{{ card.text }}</p>
         <div class="changing-tasks-list__ul-li-wrapper">
           <span class="changing-tasks-list__ul-li-status" @click="openPopup(card.id)">{{ card.status }}</span>
@@ -140,6 +139,10 @@
         &:last-child {
           margin: 0;
           border-bottom: none;
+        }
+
+        .changing-tasks-list__ul-li-wrapper{
+          max-width: none;
         }
 
         &-text {

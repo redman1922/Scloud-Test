@@ -43,10 +43,10 @@ const dragEnd = () => {
         </li>
       </ul>
     </div>
-    <div class="view-tasks__desk-cards">
+    <div class="view-tasks__desk-cards margin-center-block">
       <span class="view-tasks__desk-cards-status">В работе</span>
       <ul
-        class="view-tasks__desk-cards__list"
+        class="view-tasks__desk-cards__list "
         @dragenter="dragEnter('В работе')"
       >
         <li
@@ -142,18 +142,9 @@ const dragEnd = () => {
 }
 
 
-@media screen and (max-width: 1190px) {
-  .view-tasks__desk {
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-    &-cards {
-      text-align: center;
-    }
-
-    &-cards:last-child {
-      margin: 50px 0 0;
-    }
+@media screen and (max-width: 1213px) {
+  .margin-center-block{
+    margin: 0 16px;
   }
 }
 

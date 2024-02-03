@@ -28,7 +28,6 @@ const handleStatus = (status) => {
       break
 
   }
-  console.log( statusPopup.value)
 }
 
 const handleForm = (id) =>{

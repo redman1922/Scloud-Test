@@ -1,7 +1,7 @@
 <script setup>
 import { inject, ref } from 'vue'
 
-const { addToCards,id } = inject('cards')
+const { addToCards, id } = inject('cards')
 
 const text = ref('')
 
@@ -9,19 +9,27 @@ const handleSubmit = () => {
   addToCards({
     id: id.value++,
     text: text.value,
-    status: 'Открыт',
+    status: 'Открыт'
   })
   text.value = ''
 }
+
+const clearText = () => {
+  text.value = ''
+}
+
 
 </script>
 
 <template>
   <div class="changing-tasks__add">
     <h3 class="changing-tasks__add-title">Добавить задачу</h3>
-    <form @submit.prevent="handleSubmit" class="changing-tasks__add-form">
+    <form class="changing-tasks__add-form" @submit.prevent="handleSubmit">
       <button type="submit" class="changing-tasks__add-form-button">Добавить задачу</button>
-      <input v-model="text" placeholder="Текст" class="changing-tasks__add-form-input" />
+      <div class="changing-tasks__add-form-wrapper">
+        <input v-model="text" placeholder="Текст" class="changing-tasks__add-form-wrapper-input" />
+        <span class="changing-tasks__add-form-wrapper-span" @click="clearText"></span>
+      </div>
     </form>
   </div>
 </template>
@@ -82,15 +90,63 @@ const handleSubmit = () => {
       }
     }
 
-    &-input {
-      @include pt-sans-caption-text(14px);
-      line-height: 24px;
-      font-weight: 400;
-      max-width: 478px;
-      width: 100%;
-      border-radius: 100px;
-      padding: 12px 0 12px 16px;
-      border: 1px solid $color-border;
+    &-wrapper {
+      width: 90%;
+      position: relative;
+
+      &:hover .changing-tasks__add-form-wrapper-span {
+        display: block;
+      }
+
+
+
+      &-input {
+        @include pt-sans-caption-text(14px);
+        line-height: 24px;
+        font-weight: 400;
+        width: 100%;
+        border-radius: 100px;
+        padding: 12px 0 12px 16px;
+        border: 1px solid $color-border;
+      }
+
+      &-input:focus + .changing-tasks__add-form-wrapper-span {
+        display: block;
+      }
+
+      &-span {
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        top: 20px;
+        right: 26px;
+        cursor: pointer;
+        display: none;
+      }
+
+      &-span:after {
+        content: '';
+        position: absolute;
+        background-color: $color-orange;
+        width: 2px;
+        height: 14px;
+        border-radius: 2px;
+        right: 4px;
+        top: -1px;
+        transform: rotate(135deg);
+      }
+
+      &-span:before {
+        content: '';
+        position: absolute;
+        background-color: $color-orange;
+        width: 2px;
+        height: 14px;
+        border-radius: 3px;
+        right: 4px;
+        top: -1px;
+        transform: rotate(45deg);
+      }
     }
   }
 }
@@ -100,10 +156,6 @@ const handleSubmit = () => {
     max-width: none;
 
     .changing-tasks__add-form {
-      &-button {
-        width: 48px;
-
-      }
 
       &-input {
         @include pt-sans-caption-text(14px);
@@ -120,6 +172,14 @@ const handleSubmit = () => {
       @include pt-sans-caption-text(18px);
       line-height: 26px;
       margin: 0 0 24px;
+    }
+
+    .changing-tasks__add-form {
+      &-wrapper {
+        &-span {
+          display: block;
+        }
+      }
     }
   }
 }
@@ -147,10 +207,13 @@ const handleSubmit = () => {
         border-color: transparent;
       }
 
-      &-input {
-        @include pt-sans-caption-text(14px);
-        max-width: none;
+      &-wrapper {
+        width: 100%;
         margin: 0 0 24px;
+
+        &-input {
+          @include pt-sans-caption-text(14px);
+        }
       }
     }
   }
