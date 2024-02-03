@@ -34,7 +34,7 @@ const dragEnd = () => {
         <li
           v-for="message in statusCountsAndCards.cards['Открыт']"
           :key="message.id"
-          :draggable="true"
+          draggable="true"
           @dragstart="dragStart(message.id)"
           @dragover.prevent
           @dragend="dragEnd"
@@ -52,7 +52,7 @@ const dragEnd = () => {
         <li
           v-for="message in statusCountsAndCards.cards['В работе']"
           :key="message.id"
-          :draggable="true"
+          draggable="true"
           @dragstart="dragStart(message.id)"
           @dragover.prevent
           @dragend="dragEnd"
@@ -69,7 +69,7 @@ const dragEnd = () => {
         <li
           v-for="message in statusCountsAndCards.cards['Закрыт']"
           :key="message.id"
-          :draggable="true"
+          draggable="true"
           @dragstart="dragStart(message.id)"
           @dragover.prevent
           @dragend="dragEnd"

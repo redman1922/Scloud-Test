@@ -1,11 +1,8 @@
 <script setup>
-import { inject, watch } from 'vue'
+import { inject } from 'vue'
 
 const { statusCountsAndCards } = inject('cards')
 
-watch(statusCountsAndCards, () => {
-  console.log(statusCountsAndCards)
-})
 </script>
 
 <template>
@@ -14,17 +11,17 @@ watch(statusCountsAndCards, () => {
     <ul class="changing-tasks__current-ul">
       <li class="changing-tasks__current-li">
         <span
-          class="changing-tasks__current-li-icon-1"><strong>Открыто - {{ statusCountsAndCards.counts['Открыт'] ? statusCountsAndCards.counts['Открыт'] : 0
+          class="changing-tasks__current-li-icon-1"><strong>Открыто - {{ statusCountsAndCards.counts['Открыт'] ?? 0
           }}</strong></span>
       </li>
         <li class="changing-tasks__current-li">
           <span
-            class="changing-tasks__current-li-icon-2"><strong>В работе - {{ statusCountsAndCards.counts['В работе'] ? statusCountsAndCards.counts['В работе'] : 0
+            class="changing-tasks__current-li-icon-2"><strong>В работе - {{ statusCountsAndCards.counts['В работе'] ?? 0
             }}</strong></span>
         </li>
         <li class="changing-tasks__current-li">
           <span
-            class="changing-tasks__current-li-icon-3"><strong>Закрыто - {{ statusCountsAndCards.counts['Закрыт'] ? statusCountsAndCards.counts['Закрыт'] : 0
+            class="changing-tasks__current-li-icon-3"><strong>Закрыто - {{ statusCountsAndCards.counts['Закрыт'] ?? 0
             }}</strong></span>
         </li>
     </ul>

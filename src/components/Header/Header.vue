@@ -23,7 +23,7 @@ const scrollToTop = () => {
     </div>
     <div class="changing-tasks-list__position">
       <HeaderListTask
-        :toggleButton="toggleButton"
+        :toggle-button="toggleButton"
       />
     </div>
     <button
@@ -45,43 +45,43 @@ const scrollToTop = () => {
   max-width: 1200px;
   margin: 0 auto;
 
-  .changing-tasks__title {
+  &__title {
     @include montserrat-text(32px);
     line-height: 40px;
     color: $color-text;
     margin: 0 0 48px 0;
   }
 
-  .changing-tasks__position {
+  &__position {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 0 0 60px 0;
   }
 
-  .changing-tasks-list__position {
+  &-list__position {
     background-color: $color-white;
     padding: 40px;
     max-width: 1200px;
     width: 100%;
     border-radius: 48px;
-  }
 
-  .changing-tasks-list__position-button {
-    @include pt-sans-caption-text(14px);
-    font-weight: 700;
-    line-height: 24px;
-    color: $color-orange;
-    border: 2px solid $color-orange;
-    border-radius: 50px;
-    padding: 12px 64px 12px 32px;
-    background-color: $color-white;
-    margin: 40px 0 0;
-    position: relative;
-  }
+    &-button {
+      @include pt-sans-caption-text(14px);
+      font-weight: 700;
+      line-height: 24px;
+      color: $color-orange;
+      border: 2px solid $color-orange;
+      border-radius: 50px;
+      padding: 12px 64px 12px 32px;
+      background-color: $color-white;
+      margin: 40px 0 0;
+      position: relative;
+    }
 
-  .changing-tasks-list__position-button:active {
-    opacity: 0.5;
+    &-button:active {
+      opacity: 0.5;
+    }
   }
 
   .arrow-up {
@@ -127,30 +127,6 @@ const scrollToTop = () => {
     left: -5px;
     transform: rotate(90deg);
   }
-
-  //.changing-tasks-list__position-button:after{
-  //  content: "";
-  //  position: absolute;
-  //  width: 2px;
-  //  height: 10px;
-  //  background-color: #ff6600;
-  //  border-radius: 1px;
-  //  top: 19px;
-  //  right: 35px;
-  //  transform: rotate(45deg);
-  //}
-
-  //.changing-tasks-list__position-button:before{
-  //  content: "";
-  //  position: absolute;
-  //  width: 2px;
-  //  height: 10px;
-  //  background-color: #ff6600;
-  //  border-radius: 1px;
-  //  top: 19px;
-  //  right: 41px;
-  //  transform: rotate(135deg);
-  //}
 }
 
 @media screen and (max-width: 1190px) {

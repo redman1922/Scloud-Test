@@ -28,7 +28,7 @@ const clearText = () => {
       <button type="submit" class="changing-tasks__add-form-button">Добавить задачу</button>
       <div class="changing-tasks__add-form-wrapper">
         <input v-model="text" placeholder="Текст" class="changing-tasks__add-form-wrapper-input" />
-        <span class="changing-tasks__add-form-wrapper-span" @click="clearText"></span>
+        <button class="changing-tasks__add-form-wrapper-button" @click="clearText"></button>
       </div>
     </form>
   </div>
@@ -94,11 +94,9 @@ const clearText = () => {
       width: 90%;
       position: relative;
 
-      &:hover .changing-tasks__add-form-wrapper-span {
+      &:hover .changing-tasks__add-form-wrapper-button {
         display: block;
       }
-
-
 
       &-input {
         @include pt-sans-caption-text(14px);
@@ -108,23 +106,26 @@ const clearText = () => {
         border-radius: 100px;
         padding: 12px 0 12px 16px;
         border: 1px solid $color-border;
+
       }
 
-      &-input:focus + .changing-tasks__add-form-wrapper-span {
+      &-input:focus + .changing-tasks__add-form-wrapper-button {
         display: block;
       }
 
-      &-span {
+      &-button {
         position: absolute;
         width: 11px;
         height: 11px;
-        top: 20px;
+        top: 18px;
         right: 26px;
         cursor: pointer;
         display: none;
+        background-color: transparent;
+        border-color: transparent;
       }
 
-      &-span:after {
+      &-button:after {
         content: '';
         position: absolute;
         background-color: $color-orange;
@@ -136,7 +137,7 @@ const clearText = () => {
         transform: rotate(135deg);
       }
 
-      &-span:before {
+      &-button:before {
         content: '';
         position: absolute;
         background-color: $color-orange;
@@ -176,7 +177,7 @@ const clearText = () => {
 
     .changing-tasks__add-form {
       &-wrapper {
-        &-span {
+        &-button {
           display: block;
         }
       }

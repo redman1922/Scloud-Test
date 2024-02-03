@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref, watch } from 'vue'
+import { inject, ref } from 'vue'
 
 const { updateCards, removeCards } = inject('cards')
 
@@ -89,7 +89,7 @@ const handleForm = (id) =>{
         </div>
         <div class="popup-content__footer">
           <button type="submit" class="popup-content__footer-accept">Применить</button>
-          <button class="popup-content__footer-delete" @click="() => removeCards(card.id)">Удалить задачу</button>
+          <button class="popup-content__footer-delete" @click="removeCards(card.id)">Удалить задачу</button>
         </div>
       </form>
     </div>

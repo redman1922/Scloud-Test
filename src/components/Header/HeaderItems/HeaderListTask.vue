@@ -10,6 +10,7 @@
 
   let showPopupIndex = ref(null)
 
+
   const openPopup = (id) => {
     showPopupIndex.value = id
   }
@@ -35,7 +36,7 @@
           <span class="changing-tasks-list__ul-li-status" @click="openPopup(card.id)">{{ card.status }}</span>
           <template v-if="showPopupIndex === card.id">
             <Teleport to="#app">
-              <Popup :card="card" @closePopup="closePopup" />
+              <Popup :card="card" @close-popup="closePopup" />
             </Teleport>
           </template>
         </div>
