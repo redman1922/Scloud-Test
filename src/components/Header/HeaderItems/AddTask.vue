@@ -45,7 +45,7 @@ const clearText = () => {
   max-width: 588px;
   width: 100%;
 
-  .changing-tasks__add-title {
+  &-title {
     @include pt-sans-caption-text(24px);
     font-weight: 700;
     line-height: 32px;
@@ -53,7 +53,7 @@ const clearText = () => {
     margin: 0 0 24px;
   }
 
-  .changing-tasks__add-form {
+  &-form {
     display: flex;
     justify-content: space-between;
 
@@ -125,6 +125,10 @@ const clearText = () => {
         border-color: transparent;
       }
 
+      &-button:active {
+        opacity: 0.5;
+      }
+
       &-button:after {
         content: '';
         position: absolute;
@@ -156,7 +160,7 @@ const clearText = () => {
   .changing-tasks__add {
     max-width: none;
 
-    .changing-tasks__add-form {
+    &-form {
 
       &-input {
         @include pt-sans-caption-text(14px);
@@ -169,13 +173,13 @@ const clearText = () => {
 
 @media screen and (max-width: $tablet) {
   .changing-tasks__add {
-    .changing-tasks__add-title {
+    &-title {
       @include pt-sans-caption-text(18px);
       line-height: 26px;
       margin: 0 0 24px;
     }
 
-    .changing-tasks__add-form {
+    &-form {
       &-wrapper {
         &-button {
           display: block;
@@ -190,7 +194,7 @@ const clearText = () => {
   .changing-tasks__add {
     padding: 24px;
 
-    .changing-tasks__add-form {
+    &-form {
       flex-direction: column-reverse;
       justify-content: center;
 

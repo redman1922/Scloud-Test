@@ -1,6 +1,6 @@
 <script setup>
 import Header from '@/components/Header/Header.vue'
-import TaskBoard from '@/components/TaskBoard/TaskBoard.vue'
+import DragAndDrop from '@/components/DragAndDrop/DragAndDrop.vue'
 import { computed, onMounted, provide, ref, watch } from 'vue'
 
 let id = ref(0)
@@ -117,7 +117,7 @@ provide('cards', {
     <Header />
   </header>
   <main class="wrapper-view-tasks">
-    <TaskBoard />
+    <DragAndDrop />
   </main>
   <footer class="footer"></footer>
 </template>

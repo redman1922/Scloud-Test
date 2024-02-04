@@ -138,13 +138,13 @@ const scrollToTop = () => {
 
 @media screen and (max-width: $tablet) {
   .changing-tasks {
-    .changing-tasks__title {
+    &__title {
       @include montserrat-text(24px);
       line-height: 32px;
       margin: 0 0 40px 0;
     }
 
-    .changing-tasks-list__position {
+    &__position {
       border-radius: 32px;
     }
   }
@@ -152,13 +152,13 @@ const scrollToTop = () => {
 
 @media screen and (max-width: $phone) {
   .changing-tasks {
-    .changing-tasks__title {
+    &__title {
       @include montserrat-text(20px);
       line-height: 28px;
       margin: 0 0 32px 0;
     }
 
-    .changing-tasks-list__position {
+    &-list__position {
       background: transparent;
       padding: 0;
     }
